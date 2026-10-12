@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>PaySecure DR - Visible Diagrams</title>
+<style>body{font-family:system-ui;max-width:1000px;margin:auto;padding:20px;background:#f5f7fb}
+img{width:100%;border:2px solid #333;border-radius:12px;margin:16px 0;display:block}
+.card{background:white;padding:20px;border-radius:16px;margin:20px 0;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+h1{color:#0f3b8c}</style>
+</head>
+<body>
+<h1>PaySecure Multi-Region DR - Visible Diagrams Proof</h1>
+<p>If you can see images below, diagrams are present in repo.</p>
+
+<div class="card">
+<h2>Figure 1: Architecture Overview - MUST BE VISIBLE</h2>
+<p>File: demo/image_20261012_114904.png (also .jpg and .webp)</p>
+<img src="image_20261012_114904.png" alt="Figure 1 - If not visible, try JPG" onerror="this.src='image_20261012_114904.jpg'">
+<img src="image_20261012_114904.jpg" alt="Figure 1 JPG backup" style="margin-top:8px">
+<p>Fixes: Route53 10s not 30s, Aurora Physical not Logical, DynamoDB conditional not LWW, ElastiCache manual not auto, MSK factor 3 not 1, S3 India Only not us-east-1, KMS 90-day not 365d, NetworkPolicy isolated not 0.0.0.0/0</p>
+</div>
+
+<div class="card">
+<h2>Figure 2: RPO/RTO Timeline - MUST BE VISIBLE</h2>
+<p>File: demo/image_20261012_114941.png (also .jpg and .webp)</p>
+<img src="image_20261012_114941.png" alt="Figure 2 - If not visible, try JPG" onerror="this.src='image_20261012_114941.jpg'">
+<img src="image_20261012_114941.jpg" alt="Figure 2 JPG backup" style="margin-top:8px">
+<p>T+0 Client X-Idempotency-Key -> T+20ms DynamoDB -> T+150ms Mumbai FAILS -> T+500ms Retry Same Key -> NO DOUBLE DEBIT</p>
+</div>
+
+<div class="card">
+<h2>File List in demo/ folder</h2>
+<ul>
+<li>image_20261012_114904.png - Architecture PNG (Primary)</li>
+<li>image_20261012_114904.jpg - Architecture JPG (Backup)</li>
+<li>image_20261012_114904.webp - Architecture WEBP</li>
+<li>image_20261012_114941.png - Timeline PNG (Primary)</li>
+<li>image_20261012_114941.jpg - Timeline JPG (Backup)</li>
+<li>image_20261012_114941.webp - Timeline WEBP</li>
+<li>index.html - This file</li>
+</ul>
+<p>All 6 image files should be present. If GitHub doesn't show PNG, JPG will show.</p>
+</div>
+
+</body>
+</html>

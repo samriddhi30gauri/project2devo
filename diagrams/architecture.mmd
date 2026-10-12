@@ -1,0 +1,17 @@
+graph TB
+  Client[Merchants / UPI Apps] --> R53[Route53 health check 10s TTL 60s]
+  R53 --> ALB1[ALB Mumbai ap-south-1]
+  R53 --> ALB2[ALB Hyderabad ap-south-2]
+  ALB1 --> EKS1[EKS Mumbai 6 nodes]
+  ALB2 --> EKS2[EKS Hyderabad 6 nodes warm]
+  EKS1 --> AuroraP[Aurora PostgreSQL Primary Writer]
+  EKS2 --> AuroraS[Aurora Secondary Reader]
+  AuroraP -.->|storage replication <1s| AuroraS
+  EKS1 --> Dynamo[DynamoDB Global Tables]
+  EKS2 --> Dynamo
+  EKS1 --> ElastiCacheP[ElastiCache Primary]
+  ElastiCacheP -.->|Global Datastore <5s| ElastiCacheS[ElastiCache Secondary]
+  EKS1 --> MSK1[MSK Mumbai]
+  MSK1 -.->|MirrorMaker2| MSK2[MSK Hyderabad]
+  EKS1 --> KMS1[KMS Mumbai]
+  EKS2 --> KMS2[KMS Hyderabad]

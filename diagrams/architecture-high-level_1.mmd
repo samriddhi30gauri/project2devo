@@ -1,0 +1,8 @@
+graph TB
+Client[Merchants] --> R53[Route53 HC 10s TTL 60s]
+R53 --> ALB1[Mumbai] --> EKS1 --> AuroraP[Aurora Primary]
+R53 --> ALB2[Hyderabad Warm] --> EKS2 --> AuroraS[Aurora Secondary]
+AuroraP -.->|physical <1s| AuroraS
+EKS1 & EKS2 --> Dynamo[DynamoDB Global]
+EKS1 --> CacheP -->|Global <5s| CacheS
+EKS1 --> MSK1 -.->|MM2 factor 3| MSK2

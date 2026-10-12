@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: transaction-processor, namespace: paysecure}
+spec:
+  replicas: 8
+  selector: {matchLabels: {app: transaction-processor}}
+  template:
+    metadata: {labels: {app: transaction-processor}}
+    spec:
+      containers:
+      - name: processor
+        image: paysecure/txn-processor:v1.29.0
+        env:
+        - {name: KAFKA_BROKERS, value: "msk.paysecure:9092"}
+        - {name: ENABLE_IDEMPOTENCE, value: "true"}
